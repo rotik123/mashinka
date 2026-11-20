@@ -14,51 +14,34 @@
       height: 100vh;
       overflow: hidden;
       position: relative;
-      /* Небо, солнце (radial-gradient) и асфальт с разметкой (linear-gradient) */
       background:
-        /* Солнце в левом верхнем углу */
         radial-gradient(circle at 12% 18%, #ffeb3b 0 40px, rgba(255, 235, 59, 0.3) 41px 65px, transparent 66px),
-        /* Пунктирная разметка на дороге */
         repeating-linear-gradient(90deg, #fff 0 45px, transparent 45px 90px) 0 calc(70vh + 42px) / 100% 6px no-repeat,
-        /* Полотно дороги */
         linear-gradient(to bottom, #455a64 0, #37474f 100%) 0 70vh / 100% 30vh no-repeat,
-        /* Небо */
         linear-gradient(to bottom, #81d4fa, #e1f5fe);
     }
 
-    /* Единственный элемент для самой машинки */
     .car {
       position: absolute;
-      /* Ставим ровно на дорогу */
       top: calc(70vh - 50px);
       width: 200px;
       height: 75px;
 
-      /* Рисуем корпус, кабину, окна и фары слоями фонов */
       background:
-        /* Передняя фара */
         radial-gradient(circle, #fff9c4 0 5px, #fbc02d 6px, transparent 7px) 193px 40px / 14px 14px no-repeat,
-        /* Задний фонарь */
         linear-gradient(#d32f2f, #d32f2f) 0 38px / 6px 12px no-repeat,
-        /* Заднее окно */
         linear-gradient(115deg, #263238 72%, transparent 73%) 45px 8px / 48px 25px no-repeat,
-        /* Переднее окно */
         linear-gradient(65deg, transparent 27%, #263238 28%) 98px 8px / 52px 25px no-repeat,
-        /* Крыша и стойки кабины */
         linear-gradient(115deg, transparent 18%, #e53935 19%) 35px 2px / 65px 33px no-repeat,
         linear-gradient(65deg, #e53935 81%, transparent 82%) 98px 2px / 62px 33px no-repeat,
-        /* Основной нижний корпус */
         linear-gradient(to bottom, #f44336 0 65%, #c62828 65% 100%) 0 33px / 200px 30px no-repeat;
 
       border-radius: 15px 25px 8px 8px;
 
-      /* Анимация выезда слева и остановки за 50px до правого края */
       animation: drive 3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     }
 
-    /* Заднее колесо (псевдоэлемент ::before) */
     .car::before,
-    /* Переднее колесо (псевдоэлемент ::after) */
     .car::after {
       content: "";
       position: absolute;
@@ -66,11 +49,9 @@
       width: 38px;
       height: 38px;
       border-radius: 50%;
-      /* Шина, литой диск и центральный колпачок со спицами */
       background:
         radial-gradient(circle, #37474f 0 4px, #cfd8dc 5px 11px, #212121 12px 19px);
       border: 2px dashed #546e7a;
-      /* Вращение колёс во время езды */
       animation: spin 3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     }
 
@@ -82,19 +63,15 @@
       right: 26px;
     }
 
-    /* Траектория движения машины */
     @keyframes drive {
       0% {
-        /* Полностью скрыта за левым краем экрана */
         left: -210px;
       }
       100% {
-        /* Остановка: 100% ширины экрана минус 200px (ширина авто) минус 50px (отступ) */
         left: calc(100vw - 250px);
       }
     }
 
-    /* Синхронное вращение колёс */
     @keyframes spin {
       0% {
         transform: rotate(0deg);
